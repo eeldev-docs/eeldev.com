@@ -1,4 +1,4 @@
-// Each address points to the plugin's own site.
+// Each address points to the plugin's own site. Thumbnails live in public/plugins/<slug>.jpg (from the Fab listings).
 export const plugins = [
   ['SteamCore PRO', 'Online', 'Steam sessions, achievements and Workshop for your game.', 'steamcore-pro'],
   ['Thumbnailer', 'Editor', 'Capture assets as inventory icons inside Unreal Editor.', 'thumbnailer'],
@@ -15,5 +15,6 @@ export const plugins = [
   ['EOSCore Lite', 'Online', 'Explore the lightweight Epic Online Services integration.', 'eoscore-lite'],
   ['AWS Plugins', 'Cloud', 'Connect Cognito, GameLift, Lambda, S3 and other AWS services.', 'aws']
 ].map(([name, category, description, subdomain]) => ({
-  name, category, description, url: 'https://' + subdomain + '.eeldev.com/'
+  name, category, description, url: 'https://' + subdomain + '.eeldev.com/',
+  image: '/plugins/' + name.toLowerCase().replace(/[^a-z0-9]+/g, '-') + '.jpg'
 }));
