@@ -1,0 +1,42 @@
+---
+import Info from '../layouts/Info.astro';
+---
+<Info title="Asking for help">
+  <section id="hours">
+    <h2>Support hours</h2>
+    <p>Monday to Friday, 08:00–14:00 GMT+1 (UTC+01:00). Support is closed on Swedish public holidays.</p>
+  </section>
+  <section>
+    <h2>Before you ask</h2>
+    <ol>
+      <li><a href="/how-to-validate-your-product/">Verify your purchase</a> to receive product support.</li>
+      <li>Read the <a href="/#catalog">documentation for your plugin</a> and try its example project. The examples demonstrate basic functionality and are intended for learning.</li>
+      <li>Search the <a href="https://discord.gg/3Yu7pEy">eelDev Discord</a> for an existing answer. Verified customers can ask in their product’s private support channel.</li>
+    </ol>
+    <p>For configuration issues, compare <code>DefaultEngine.ini</code> with the documentation and example project. This file selects the online subsystem and supplies credentials to the plugin.</p>
+  </section>
+  <section>
+    <h2>What to include in your request</h2>
+    <ul>
+      <li>Your operating system, Unreal Engine version and plugin version.</li>
+      <li>How to reproduce the issue and whether it happens in the editor, a standalone instance or a packaged build.</li>
+      <li>Screenshots of the relevant Blueprint logic.</li>
+      <li>A fresh log from the affected instance. Reproduce the issue, close the project and attach the newly generated log from <code>Saved/Logs/</code>.</li>
+    </ul>
+    <p>Logs are required for troubleshooting. They show engine and hardware information, function calls and, for crashes, the call stack. Send the log for the relevant run to keep the attachment small.</p>
+  </section>
+  <section id="where">
+    <h2>Where to find your logs</h2>
+    <p>Open the project’s <code>Saved/Logs/</code> folder. The filenames in these examples vary by project.</p>
+    <h3>Play In Editor and Standalone Game</h3>
+    <p>For Play In Editor, attach the project log, such as <code>SteamCore_Example.log</code>. A Standalone Game launched from the editor generates its own log, such as <code>SteamCore_Example_2.log</code>. Choose the file for the instance that reproduced the issue.</p>
+    <a href="/help-images/editor-logs.png"><img src="/help-images/editor-logs.png" width="940" height="252" alt="Example log files for the editor and a standalone game instance" loading="lazy" /></a>
+    <h3>Packaged project</h3>
+    <p>Open the packaged project’s <code>Saved/Logs/</code> folder and attach the log from the affected run.</p>
+    <a href="/help-images/packaged-logs.png"><img src="/help-images/packaged-logs.png" width="963" height="176" alt="Example of the log location for a packaged project" loading="lazy" /></a>
+  </section>
+  <section>
+    <h2>What product support covers</h2>
+    <p>eelDev support covers issues with eelDev plugins. For general questions about player-name replication, configuring Steam achievements or obtaining a Steam App ID, consult the engine or service provider’s documentation and community. You can also ask on Discord, where community replies are voluntary.</p>
+  </section>
+</Info>

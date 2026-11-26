@@ -1,0 +1,13 @@
+---
+const links = [
+  ['Plugins', '/#catalog'], ['Games', '/games/'], ['About', '/about/'],
+  ['Contact', '/contact/'], ['Help', '/help/'], ['Discord ↗', 'https://discord.gg/3Yu7pEy'],
+  ['Fab ↗', 'https://www.fab.com/sellers/eelDev']
+];
+---
+<header><div class="wrap bar">
+  <a class="brand" href="/" aria-label="eelDev home"><i>&lt;</i>eelDev<i>/&gt;</i></a>
+  <nav aria-label="Main navigation">
+    {links.map(([label, url]) => <a href={url} aria-current={Astro.url.pathname === url ? 'page' : undefined}>{label}</a>)}
+  </nav>
+</div></header>
