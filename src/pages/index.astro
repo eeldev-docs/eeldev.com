@@ -1,28 +1,23 @@
 ---
 import { plugins } from '../data/plugins.js';
-import '../styles/site.css';
-import Header from '../components/Header.astro';
+import Base from '../layouts/Base.astro';
 const featured = plugins.find(p => p.name === 'Host Migration Core');
 const categories = ['All', ...new Set(plugins.map(p => p.category))];
+const organization = {
+  '@context': 'https://schema.org', '@type': 'Organization', name: 'eelDev',
+  url: Astro.site?.href, foundingDate: '2017',
+  sameAs: ['https://www.youtube.com/@eeldev', 'https://x.com/dryeeldev', 'https://www.fab.com/sellers/eelDev', 'https://github.com/eeldev-ue4']
+};
 ---
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="Discover eelDev plugins for Unreal Engine. Explore multiplayer integrations, gameplay systems and editor tools, and find their documentation." />
-    <title>eelDev — Unreal Engine plugins</title>
-  </head>
-  <body>
-    <a class="skip" href="#catalog">Skip to plugins</a>
-    <Header />
+<Base title="eelDev — Unreal Engine plugins" description="Discover eelDev plugins for Unreal Engine. Explore multiplayer integrations, gameplay systems and editor tools, and find their documentation." skipTo="#catalog" skipLabel="Skip to plugins">
+    <script slot="head" type="application/ld+json" set:html={JSON.stringify(organization)} />
     <main>
       <section class="hero wrap">
         <div class="intro">
           <p class="label"><b></b> Independent Unreal Engine tools</p>
           <h1>Build your<br/>next <em>game.</em></h1>
           <p class="lead">Multiplayer integrations, gameplay systems and editor tools for Unreal Engine developers.</p>
-          <a class="cta" href="#catalog">Browse plugins <span>↓</span></a>
+          <a class="cta" href="#catalog">Browse plugins <span aria-hidden="true">↓</span></a>
         </div>
         <article class="feature">
           <div class="panel-top"><span>Multiplayer lab</span><span>Listen server</span></div>
@@ -32,18 +27,17 @@ const categories = ['All', ...new Set(plugins.map(p => p.category))];
             <div class="node peer left"><i>02</i><small>Player</small></div>
             <div class="node peer right"><i>03</i><small>Player</small></div>
           </div>
-          <div class="panel-foot"><div><p class="label">Featured plugin</p><h2>{featured.name}</h2></div><a href={featured.url} aria-label="Explore Host Migration Core">↗</a></div>
+          <div class="panel-foot"><div><p class="label">Featured plugin</p><h2>{featured.name}</h2></div><a href={featured.url} aria-label={`Explore ${featured.name}`}>↗</a></div>
         </article>
       </section>
       <section class="library" id="catalog"><div class="wrap">
         <div class="section-head"><h2>Plugin library<span>.</span></h2><label hidden id="search-label"><span class="sr">Search plugins</span><input type="search" id="query" placeholder="Search plugins…" /></label></div>
         <div id="filters" hidden aria-label="Filter by category" role="group">{categories.map((name,i) => <button type="button" aria-pressed={i===0} data-category={name}>{name}</button>)}</div>
         <p id="status" class="sr" aria-live="polite"></p>
-        <div class="cards">{plugins.map(p => <a class="card" data-group={p.category} href={p.url}><span class="label cat">{p.category}</span><h3>{p.name}</h3><p>{p.description}</p><span class="doc">Documentation ↗</span></a>)}</div>
+        <div class="cards">{plugins.map(p => <a class="card" data-group={p.category} href={p.url}><span class="label cat">{p.category}</span><h3>{p.name}</h3><p>{p.description}</p><span class="doc">Documentation <span aria-hidden="true">↗</span></span></a>)}</div>
         <p id="empty" hidden>No matching plugins. Try another name or category.</p>
       </div></section>
     </main>
-    <footer class="wrap"><span class="brand"><i>&lt;</i>eelDev<i>/&gt;</i></span><a href="https://www.youtube.com/@eeldev">Tutorials ↗</a><a href="https://discord.gg/3Yu7pEy">Support on Discord ↗</a></footer>
     <script>
       const input = document.querySelector<HTMLInputElement>('#query')!;
       const buttons = document.querySelectorAll<HTMLButtonElement>('#filters button');
@@ -53,11 +47,11 @@ const categories = ['All', ...new Set(plugins.map(p => p.category))];
         const query = input.value.toLowerCase().trim();
         let count = 0;
         for (const card of cards) {
-          card.hidden = (category !== 'All' && category !== card.dataset.group) || !card.innerText.toLowerCase().includes(query);
+          card.hidden = (category !== 'All' && category !== card.dataset.group) || !card.textContent!.toLowerCase().includes(query);
           if (!card.hidden) count++;
         }
         document.querySelector<HTMLElement>('#empty')!.hidden = count > 0;
-        document.querySelector('#status')!.textContent = count + ' matching plugins';
+        document.querySelector('#status')!.textContent = count === 1 ? '1 matching plugin' : count + ' matching plugins';
       }
       for (const button of buttons) button.addEventListener('click', () => {
         category = button.dataset.category!;
@@ -67,5 +61,4 @@ const categories = ['All', ...new Set(plugins.map(p => p.category))];
       input.addEventListener('input', filter);
       for (const id of ['filters','search-label']) document.getElementById(id)!.hidden = false;
     </script>
-  </body>
-</html>
+</Base>

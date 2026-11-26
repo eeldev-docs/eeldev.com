@@ -1,18 +1,8 @@
 ---
-import Header from '../components/Header.astro';
-import '../styles/site.css';
-const { title } = Astro.props;
+import Base from './Base.astro';
+interface Props { title: string; description: string; noindex?: boolean }
+const { title, description, noindex } = Astro.props;
 ---
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>{title} — eelDev</title>
-  </head>
-  <body>
-    <a class="skip" href="#content">Skip to content</a>
-    <Header />
-    <main id="content" class="wrap info"><h1>{title}</h1><slot /></main>
-  </body>
-</html>
+<Base title={`${title} — eelDev`} description={description} noindex={noindex}>
+  <main id="content" class="wrap info"><h1>{title}</h1><slot /></main>
+</Base>

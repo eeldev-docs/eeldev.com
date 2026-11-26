@@ -3,15 +3,16 @@ import { sitePath } from '../site-path.js';
 
 const links = [
   ['Plugins', '/#catalog'], ['Games', '/games/'], ['About', '/about/'],
-  ['Contact', '/contact/'], ['Help', '/help/'], ['Discord ↗', 'https://discord.gg/3Yu7pEy'],
-  ['Fab ↗', 'https://www.fab.com/sellers/eelDev']
+  ['Contact', '/contact/'], ['Help', '/help/'], ['Discord', 'https://discord.gg/3Yu7pEy'],
+  ['Fab', 'https://www.fab.com/sellers/eelDev']
 ];
 ---
 <header><div class="wrap bar">
   <a class="brand" href={sitePath('/')} aria-label="eelDev home"><i>&lt;</i>eelDev<i>/&gt;</i></a>
   <nav aria-label="Main navigation">
     {links.map(([label, url]) => {
-      const href = url.startsWith('/') ? sitePath(url) : url;
+      if (!url.startsWith('/')) return <a href={url}>{label} <span aria-hidden="true">↗</span></a>;
+      const href = sitePath(url);
       return <a href={href} aria-current={Astro.url.pathname === href ? 'page' : undefined}>{label}</a>;
     })}
   </nav>

@@ -5,7 +5,7 @@ import { sitePath } from '../site-path.js';
 
 const root = sitePath('/');
 ---
-<Info title="Page not found">
+<Info title="Page not found" description="The page you were looking for could not be found." noindex>
   <script is:inline define:vars={{ patternRedirects, root }}>
     const path = location.pathname;
     if (path.startsWith(root)) {
