@@ -1,5 +1,6 @@
 ---
 import Info from '../layouts/Info.astro';
+import { sitePath } from '../site-path.js';
 ---
 <Info title="Asking for help">
   <section id="hours">
@@ -9,8 +10,8 @@ import Info from '../layouts/Info.astro';
   <section>
     <h2>Before you ask</h2>
     <ol>
-      <li><a href="/how-to-validate-your-product/">Verify your purchase</a> to receive product support.</li>
-      <li>Read the <a href="/#catalog">documentation for your plugin</a> and try its example project. The examples demonstrate basic functionality and are intended for learning.</li>
+      <li><a href={sitePath('/how-to-validate-your-product/')}>Verify your purchase</a> to receive product support.</li>
+      <li>Read the <a href={sitePath('/#catalog')}>documentation for your plugin</a> and try its example project. The examples demonstrate basic functionality and are intended for learning.</li>
       <li>Search the <a href="https://discord.gg/3Yu7pEy">eelDev Discord</a> for an existing answer. Verified customers can ask in their product’s private support channel.</li>
     </ol>
     <p>For configuration issues, compare <code>DefaultEngine.ini</code> with the documentation and example project. This file selects the online subsystem and supplies credentials to the plugin.</p>
@@ -30,10 +31,10 @@ import Info from '../layouts/Info.astro';
     <p>Open the project’s <code>Saved/Logs/</code> folder. The filenames in these examples vary by project.</p>
     <h3>Play In Editor and Standalone Game</h3>
     <p>For Play In Editor, attach the project log, such as <code>SteamCore_Example.log</code>. A Standalone Game launched from the editor generates its own log, such as <code>SteamCore_Example_2.log</code>. Choose the file for the instance that reproduced the issue.</p>
-    <a href="/help-images/editor-logs.png"><img src="/help-images/editor-logs.png" width="940" height="252" alt="Example log files for the editor and a standalone game instance" loading="lazy" /></a>
+    <a href={sitePath('/help-images/editor-logs.png')}><img src={sitePath('/help-images/editor-logs.png')} width="940" height="252" alt="Example log files for the editor and a standalone game instance" loading="lazy" /></a>
     <h3>Packaged project</h3>
     <p>Open the packaged project’s <code>Saved/Logs/</code> folder and attach the log from the affected run.</p>
-    <a href="/help-images/packaged-logs.png"><img src="/help-images/packaged-logs.png" width="963" height="176" alt="Example of the log location for a packaged project" loading="lazy" /></a>
+    <a href={sitePath('/help-images/packaged-logs.png')}><img src={sitePath('/help-images/packaged-logs.png')} width="963" height="176" alt="Example of the log location for a packaged project" loading="lazy" /></a>
   </section>
   <section>
     <h2>What product support covers</h2>

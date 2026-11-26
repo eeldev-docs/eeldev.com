@@ -1,0 +1,22 @@
+---
+import Info from '../layouts/Info.astro';
+import { patternRedirects } from '../legacy-redirects.js';
+import { sitePath } from '../site-path.js';
+
+const root = sitePath('/');
+---
+<Info title="Page not found">
+  <script is:inline define:vars={{ patternRedirects, root }}>
+    const path = location.pathname;
+    if (path.startsWith(root)) {
+      const requestPath = '/' + path.slice(root.length);
+      const match = patternRedirects.find(([pattern]) => new RegExp(pattern).test(requestPath));
+      if (match) {
+        const destination = match[1];
+        location.replace(destination.startsWith('/') ? root + destination.slice(1) : destination);
+      }
+    }
+  </script>
+  <p class="lead">Try the plugin catalogue or get in touch if you need help finding a page.</p>
+  <a class="cta" href={sitePath('/#catalog')}>Browse plugins</a>
+</Info>
