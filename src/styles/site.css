@@ -86,5 +86,6 @@ code { font: .9em var(--mono); background: #ffffff12; padding: 1px 5px; border-r
   .hero { grid-template-columns: 1fr; gap: 32px }
   .bar { min-height: 63px; flex-wrap: wrap; gap: 12px; padding-block: 14px }
   .brand { font-size: 22px }
-  .bar nav { font-size: 14px; flex-wrap: wrap; justify-content: flex-start }
+  .bar nav { font-size: 14px; flex-wrap: wrap; justify-content: flex-start; gap: 0 16px }
+  .bar nav a { padding-block: 6px }
 }
